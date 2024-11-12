@@ -1,112 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JUSTICE-4-ALL - Legal Locations</title>
-    <link rel="stylesheet" href="/css/locations.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9zgk7LL0PGP0hlAWL3hFAXGMVJx-952&libraries=places"></script>
-</head>
-<body>
-    <div class="container">
-        <!-- Sidebar Toggle Button -->
-        <button class="sidebar-toggle" id="sidebarToggle">
-            <i class="fas fa-bars"></i>
-        </button>
 
-        <!-- Sidebar -->
-        <div class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <h2>Locations</h2>
-                <button class="close-sidebar" id="closeSidebar">
-                    <i class="fas fa-times"></i>
-                </button>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JUSTICE-4-ALL - Legal Locations</title>
+        <link rel="stylesheet" href="/locations/css/locations.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <!-- <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9zgk7LL0PGP0hlAWL3hFAXGMVJx-952&loading=async&callback=initMap"></script> -->
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9zgk7LL0PGP0hlAWL3hFAXGMVJx-952c&libraries=places"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <!-- Sidebar Toggle Button -->
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h2>Locations</h2>
+                    <button class="close-sidebar" id="closeSidebar">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- Location Categories -->
+                <div class="location-categories">
+                    <!-- Police Stations -->
+                    <div class="category">
+                        <div class="category-header" onclick="toggleCategory('police')">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Police Stations</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="category-content" id="police-content">
+                            <!-- Location items will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Courts -->
+                    <div class="category">
+                        <div class="category-header" onclick="toggleCategory('courts')">
+                            <i class="fas fa-balance-scale"></i>
+                            <h3>Courts</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="category-content" id="courts-content">
+                            <!-- Location items will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Legal Firms -->
+                    <div class="category">
+                        <div class="category-header" onclick="toggleCategory('firms')">
+                            <i class="fas fa-briefcase"></i>
+                            <h3>Legal Firms</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="category-content" id="firms-content">
+                            <!-- Location items will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Location Categories -->
-            <div class="location-categories">
-                <!-- Police Stations -->
-                <div class="category">
-                    <div class="category-header" onclick="toggleCategory('police')">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>Police Stations</h3>
-                        <i class="fas fa-chevron-down"></i>
+            <!-- Main Content -->
+            <div class="main-content">
+                <nav>
+                    <button class="sidebar-toggle" id="sidebarToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>JUSTICE-4-ALL</h1>
+                    <div class="nav-buttons">
+                        <button class="location-btn active" data-type="police">Police Stations</button>
+                        <button class="location-btn" data-type="courts">Courts</button>
+                        <button class="location-btn" data-type="firms">Legal Firms</button>
                     </div>
-                    <div class="category-content" id="police-content">
-                        <!-- Location items will be populated by JavaScript -->
+                    <div class="search-box">
+                        <input type="text" id="search" placeholder="Search location...">
                     </div>
-                </div>
-
-                <!-- Courts -->
-                <div class="category">
-                    <div class="category-header" onclick="toggleCategory('courts')">
-                        <i class="fas fa-balance-scale"></i>
-                        <h3>Courts</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="category-content" id="courts-content">
-                        <!-- Location items will be populated by JavaScript -->
-                    </div>
-                </div>
-
-                <!-- Legal Firms -->
-                <div class="category">
-                    <div class="category-header" onclick="toggleCategory('firms')">
-                        <i class="fas fa-briefcase"></i>
-                        <h3>Legal Firms</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="category-content" id="firms-content">
-                        <!-- Location items will be populated by JavaScript -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Main Content -->
-        <div class="main-content">
-            <nav>
-                <button class="sidebar-toggle" id="sidebarToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <h1>JUSTICE-4-ALL</h1>
-                <div class="nav-buttons">
-                    <button class="location-btn active" data-type="police">Police Stations</button>
-                    <button class="location-btn" data-type="courts">Courts</button>
-                    <button class="location-btn" data-type="firms">Legal Firms</button>
-                </div>
-                <div class="search-box">
-                    <input type="text" id="search" placeholder="Search location...">
-                </div>
-            </nav>
-            <div id="map"></div>
-        </div>
-    </div>
-
-    <!-- Location Item Template -->
-    <template id="location-item-template">
-        <div class="location-item">
-            <div class="location-info">
-                <h4 class="location-name"></h4>
-                <p class="location-address"></p>
-                <p class="location-phone"></p>
-                <div class="location-hours"></div>
-            </div>
-            <div class="location-actions">
-                <button class="directions-btn">
-                    <i class="fas fa-directions"></i> Get Directions
-                </button>
-                <button class="more-info-btn">
-                    <i class="fas fa-info-circle"></i> More Info
-                </button>
+                </nav>
+                <div id="map"></div>
             </div>
         </div>
-    </template>
 
-    <script src="js/locations.js"></script>
-    <script src="data/police-stations.js"></script>
-    <script src="data/courts.js"></script>
-    <script src="data/legal-firms.js"></script>
-</body>
-</html> 
+        <!-- Location Item Template -->
+        <template id="location-item-template">
+            <div class="location-item">
+                <div class="location-info">
+                    <h4 class="location-name"></h4>
+                    <p class="location-address"></p>
+                    <p class="location-phone"></p>
+                    <div class="location-hours"></div>
+                </div>
+                <div class="location-actions">
+                    <button class="directions-btn">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </button>
+                    <button class="more-info-btn">
+                        <i class="fas fa-info-circle"></i> More Info
+                    </button>
+                </div>
+            </div>
+        </template>
+
+        <script src="/locations/js/locations.js"></script>
+        <script src="/locations/data/police-stations.js"></script>
+        <script src="/locations/data/courts.js"></script>
+        <script src="/locations/data/legal-firms.js"></script>
+    </body>
+
+</html>
